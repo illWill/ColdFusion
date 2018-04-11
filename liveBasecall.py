@@ -19,7 +19,7 @@ def callLive(subdirectory,sourceRoot,targetDir):
     albacoreJobcode = startCode + ":" + subdirectory + ":albacore"
     albacoreRunline = 'bsub -J "{}" {} "{}"'.format(albacoreJobcode, albacoreBsubOptions, albacorePy)
     
-    deMultiplexer = 'python3 test.py ' + targetDir  #TODO: Demultiplex directories rather than files
+    deMultiplexer = 'python3 demultiplex.py ' + targetDir  #TODO: Demultiplex directories rather than files
     deMultiplexerJobCode = startCode + ":" + subdirectory + ":demultiplexer"
     deMultiplexerRunline = 'bsub -J "{}" -w "{}" "{}"'.format(deMultiplexerJobCode,albacoreJobcode,deMultiplexer)
     
