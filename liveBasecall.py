@@ -26,8 +26,8 @@ def callLive(subdirectory,sourceRoot,targetDir):
     #bwaCall = '/PHShome/wrj2/bwa/bwa mem /PHShome/wrj2/Genomes/hg19/coldfuse/coldFusion3.fasta' #needs redirect
     print(albacoreRunline)
     print(deMultiplexerRunline)
-    #subprocess.call(albacoreRunline, shell=True)
-    #subprocess.call(deMultiplexerRunline, shell=True)
+    subprocess.call(albacoreRunline, shell=True)
+    subprocess.call(deMultiplexerRunline, shell=True)
 
 startCode = str(time.time())
 processed = []
@@ -60,5 +60,8 @@ while slept < 60:
 
 unprocessed = [f for f in files if f not in processed and os.path.isdir(sourceDir + "/" + f) and f.isdigit()]
 for f in unprocessed:
-    callLive(unprocessed[0] , sourceDir, destinationDir)
+    targetDir = destinationDir + "/" + unprocessed[0]
+    if not os.path.exists(targetDir):
+	os.makedirs(targetDir)
+    callLive(unprocessed[0] , sourceDir, targetDir)
     processed.append(a[0][1])

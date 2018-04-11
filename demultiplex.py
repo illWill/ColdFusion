@@ -49,7 +49,7 @@ def readSplitAdapter(seq,adapter):
 
 def parseReadFile(fn,adapterFile):
     dotSplitFn = fn.split(".")
-    if not dotSplitFn[-1] == ".fastq":
+    if not dotSplitFn[-1] == "fastq":
         print("File does not look like a fastq:" + fn,file=sys.stderr)
         return
     prefix = ".".join(dotSplitFn[:-1]) #removes the suffix, should always be .fastq
@@ -134,7 +134,7 @@ def groupQuery(blatlet):
 
 def getAlbacoreFastqs(directory):
     files = os.listdir(directory)
-    return [f for f in files if f.endsWith(".fastq")]
+    return [f for f in files if f.endswith(".fastq")]
 
 if len(sys.argv) > 1:
     passDir = sys.argv[1] + "/workspace/pass"
